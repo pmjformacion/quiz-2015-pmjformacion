@@ -12,3 +12,8 @@ exports.answer = function(req, res) {
 	}
 };
 
+exports.author = function(req, res) {
+	res.render('author', {autores: [
+			{name:'Paco Martínez', pictureURL: '/images/pmjformacion-150.png',},
+			{name: 'Coautor', pictureURL: '/images/pmjformacion-bw.png'}]});
+}

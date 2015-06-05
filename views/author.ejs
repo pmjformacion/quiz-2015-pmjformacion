@@ -1,0 +1,7 @@
+
+<%for (var autor in autores) { %>
+	<div class="item-author">
+		<span><img class="author-picture" src="<%= autores[autor].pictureURL %>" alt="foto del autor" /></span>
+		<span><strong>Autor</strong>: <em><%= autores[autor].name %></em></span>
+	</div>
+<% } %>
