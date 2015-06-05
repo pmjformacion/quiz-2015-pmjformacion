@@ -2,9 +2,9 @@
 
 En caso de que no aparezca el favicon, al lado del nombre 
 de la página, prueba a acceder a la aplicación con la 
-<i>direccion URL</i>:
+*direccion URL*
 
-		<b>127.0.0.1:3000</b>
+		**127.0.0.1:3000**
 
 Con esta URL si debería aparecer el favicon en su sitio.
 
