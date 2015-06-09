@@ -9,16 +9,13 @@ router.get('/', function(req, res) {
 });
 
 
-/* GET /quizes/question  */
-router.get('/quizes/question', quizController.question);
+// Definición de rutas de /quizes
+router.get('/quizes',                      quizController.index);
+router.get('/quizes/:quizId(\\d+)',        quizController.show);
+router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
 
-/* GET /quizes/answer  */
-router.get('/quizes/answer', quizController.answer);
 
 /* GET /author  */
 router.get('/author', quizController.author);
-
-
-
 
 module.exports = router;
