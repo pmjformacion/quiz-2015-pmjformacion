@@ -2,7 +2,6 @@
 
 ### Linux ###
 *~
-.DS_Store
 
 # KDE directory preferences
 .directory
@@ -15,8 +14,6 @@
 # Logs
 logs
 *.log
-node_modules
-npm-debug.log
 
 # Runtime data
 pids
@@ -41,4 +38,8 @@ build/Release
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
+
+# Base de datos
+quiz.sqlite
+
 
