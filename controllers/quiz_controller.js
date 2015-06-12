@@ -23,7 +23,7 @@ exports.index = function(req, res) {
     var searchSQL = req.query.search.replace(/^\s+/,'').replace(/\s+$/,'').replace(/\s+/g,"%");
     searchSQL = "%" + searchSQL + "%";
     console.log("buscarSQL " + searchSQL);
-    models.Quiz.findAll({where: ["pregunta like ?", searchSQL], order: '`pregunta` ASC'}).then(function(quizes) { //, {order: ['pregunta', 'DESC']}])
+    models.Quiz.findAll({where: ["pregunta like ?", searchSQL], order: 'pregunta ASC'}).then(function(quizes) { //, {order: ['pregunta', 'DESC']}])
         res.render('quizes/index_filter.ejs', {quizes: quizes, search: pattern});
       }).catch(function(error){next(error);})
 
