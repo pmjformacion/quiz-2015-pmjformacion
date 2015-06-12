@@ -14,3 +14,5 @@ footer     				{background: #eee; text-align: center;}
 nav span, footer span	{margin: 0px 10px 0px 0px;}
 .item-author span  		{margin: 0px 10px 0px 0px;}
 .item-author			{margin-top: 10px; text-align: left;}
+
+table 					{ text-align: left}

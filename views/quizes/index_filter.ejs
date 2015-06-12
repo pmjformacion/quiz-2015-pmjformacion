@@ -1,0 +1,17 @@
+<% if (quizes.length === 0) { %>
+
+	<h2>Ninguna coincidencia encontrada para &quot;<em><%= search %></em>&quot;</h2>
+	
+<% } else { %>
+
+	<h4>Resultado de la búsqueda para &quot;<%= search %>&quot;</h4><br>
+	<table>
+		<% var i; for (i=0; i < quizes.length; i++) { %>        
+		 <tr><td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td></tr> 
+		<% } %>
+	</table>
+	
+<% } %>
+<br>
+<p><a href="quizes">Volver a buscar</a></p>
+
