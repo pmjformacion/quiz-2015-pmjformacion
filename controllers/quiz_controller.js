@@ -17,20 +17,18 @@ exports.index = function(req, res) {
   console.log("el número de parametros es " + Object.keys(req.query).length);
   if ( Object.keys(req.query).length > 0) {
     var pattern = req.query.search;
-    console.log("buscar " + req.query.search);
     // elimino blancos al principio de la cadena, al final de la cadena y luego 
     // sustituyo 1 o varios espacios en blanco entre palabras por un solo caracter '%%'
     var searchSQL = req.query.search.replace(/^\s+/,'').replace(/\s+$/,'').replace(/\s+/g,"%");
     searchSQL = "%" + searchSQL + "%";
-    console.log("buscarSQL " + searchSQL);
     models.Quiz.findAll({where: ["pregunta like ?", searchSQL], order: 'pregunta ASC'}).then(function(quizes) { //, {order: ['pregunta', 'DESC']}])
-        res.render('quizes/index_filter.ejs', {quizes: quizes, search: pattern});
+        res.render('quizes/index_filter.ejs', {quizes: quizes, search: pattern, errors: []});
       }).catch(function(error){next(error);})
 
   } else {
     console.log("search is undefined");
     models.Quiz.findAll().then(function(quizes) {
-      res.render('quizes/index.ejs', { quizes: quizes});
+      res.render('quizes/index.ejs', { quizes: quizes, errors: [] });
     }).catch(function(error){next(error);})
     
   }
@@ -38,7 +36,7 @@ exports.index = function(req, res) {
 
 // GET /quizes/:id
 exports.show = function(req, res) {
-  res.render('quizes/show', { quiz: req.quiz});
+  res.render('quizes/show', { quiz: req.quiz, errors: []});
 };
 
 // GET /quizes/:id/answer
@@ -47,7 +45,7 @@ exports.answer = function(req, res) {
   if (req.query.respuesta === req.quiz.respuesta) {
     resultado = "Correcto";
   } 
-  res.render('quizes/answer', { quiz: req.quiz, respuesta: resultado});
+  res.render('quizes/answer', { quiz: req.quiz, respuesta: resultado, errors: []});
 };
 
 // GET /quizes/new
@@ -55,22 +53,31 @@ exports.new = function(req, res) {
   var quiz = models.Quiz.build(
     {pregunta: "Pregunta", respuesta: "Respuesta"}
   );
-  res.render('quizes/new', {quiz: quiz});
+  res.render('quizes/new', {quiz: quiz, errors: []});
 };
 
+
+// Alternativa de David Velázquez Benal
 // POST /quizes/create
-exports.create = function(req, res) {
+exports.create = function(req, res){
   var quiz = models.Quiz.build( req.body.quiz );
 
-// guarda en DB los campos pregunta y respuesta de quiz
-  quiz.save({fields: ["pregunta", "respuesta"]}).then(function(){
-    res.redirect('/quizes');  
-  })   // res.redirect: Redirección HTTP a lista de preguntas
+  var errors = quiz.validate();//ya qe el objeto errors no tiene then(
+  if (errors)
+  {
+    var i=0; var errores=new Array();//se convierte en [] con la propiedad message por compatibilida con layout
+    for (var prop in errors) errores[i++]={message: errors[prop]};
+    res.render('quizes/new', {quiz: quiz, errors: errores});
+  } else {
+    quiz // save: guarda en DB campos pregunta y respuesta de quiz
+    .save({fields: ["pregunta", "respuesta"]})
+    .then( function(){ res.redirect('/quizes')}) ;
+  }
 };
 
 
 exports.author = function(req, res) {
 	res.render('author', {autores: [
 			{name:'Paco Martínez', pictureURL: '/images/pmjformacion-150.png',},
-			{name: 'Coautor', pictureURL: '/images/pmjformacion-bw.png'}]});
+			{name: 'Coautor', pictureURL: '/images/pmjformacion-bw.png'}], errors: []});
 };
