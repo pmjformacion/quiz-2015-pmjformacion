@@ -35,17 +35,29 @@ var sequelize = new Sequelize(null, null, null,
 // Importar la definición de la tabla Quiz
 var Quiz = sequelize.import(path.join(__dirname, 'quiz'));
 
+// Importar la definición de la tabla Comment
+var Comment = sequelize.import(path.join(__dirname, 'comment'));
+
+// Definimos las ralación entre las tablas Quiz y Comment
+Comment.belongsTo(Quiz);	// indica que un comment pertenece a un quiz.
+Quiz.hasMany(Comment , {
+	'constraints': true,
+	'onUpdate': 'cascade',
+	'onDelete': 'cascade',
+	'hooks': true
+});		// indica que un quiz puede tener muchos comments
 
 exports.Quiz = Quiz; // eportar defininción de la tabla Quiz
+exports.Comment = Comment; // eportar defininción de la tabla Comment
 
 // sequelize.sync() crea e inicaliza tabla de preguntas en DB
 sequelize.sync().success(function() {
 	// success(..) ejecuta el manejador una vez creada la tabla
 	Quiz.count().success(function (count) {
 		if(count === 0) {	//la tabla se inicializa solo si está vacía
-			Quiz.create( {pregunta: 'Capital de Portugal', respuesta: 'Lisboa', tema: 'ocio'});
-			Quiz.create( {pregunta: 'El descubridor de América', respuesta: 'Cristobal Colón', tema: 'ocio'} );
-			Quiz.create( {pregunta: 'Animal pesado de orejas grandes y con trompa', respuesta: 'Elefante', tema: 'ocio'})
+			Quiz.create( {pregunta: 'Capital de Portugal', respuesta: 'Lisboa', tema: 'otro'});
+			Quiz.create( {pregunta: 'El descubridor de América', respuesta: 'Cristobal Colón', tema: 'humanidades'} );
+			Quiz.create( {pregunta: 'Animal pesado de orejas grandes y con trompa', respuesta: 'Elefante', tema: 'ciencia'})
 			.then(function(){console.log('Base de datos inicializada')});
 		};
 	});

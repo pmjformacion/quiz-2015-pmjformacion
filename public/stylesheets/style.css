@@ -29,3 +29,5 @@ td:nth-child(1)		{padding: 0px 5px 0px 0px;}
 .subitem-2				{display: table-cell; width: 15%; text-align: left;}
 .subitem-3	 			{display: table-cell; width: 8%; }
 .subitem-4				{display: table-cell; width: 8%; }
+
+.comment 				{text-align: left; font-size: 0.75em; }
