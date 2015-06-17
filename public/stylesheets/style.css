@@ -9,15 +9,23 @@ body   					{font: 16px Georgia, serif;}
 
 .author-picture  		{height: 60px; width: 60px; border: 2px solid blue;
 						 display: inline;}
+.item-author span  		{margin: 0px 10px 0px 0px;}
+.item-author			{margin-top: 10px; text-align: left;}
 
 section > div    		{padding: 20px;}
 header, nav, section  	{background: #eee; text-align: center;}
 footer     				{background: #eee; text-align: center; font-variant: small-caps;}
 nav span, footer span	{margin: 0px 10px 0px 0px;}
-.item-author span  		{margin: 0px 10px 0px 0px;}
-.item-author			{margin-top: 10px; text-align: left;}
 
 table 					{ text-align: left}
 
 /* todos los td hjos menos menos el primero */
-td:nth-child(1)		{padding: 0px 15px 0px 0px;}
+td:nth-child(1)		{padding: 0px 5px 0px 0px;}
+
+.soft 					{color: gray; font-style: italic;}
+.table 					{display: table; width: 95%;}
+.item 					{display: table-row; }
+.subitem-1	 			{display: table-cell; width: 50%; text-align: left;}
+.subitem-2				{display: table-cell; width: 15%; text-align: left;}
+.subitem-3	 			{display: table-cell; width: 8%; }
+.subitem-4				{display: table-cell; width: 8%; }

@@ -43,9 +43,9 @@ sequelize.sync().success(function() {
 	// success(..) ejecuta el manejador una vez creada la tabla
 	Quiz.count().success(function (count) {
 		if(count === 0) {	//la tabla se inicializa solo si está vacía
-			Quiz.create( {pregunta: 'Capital de Portugal', respuesta: 'Lisboa'});
-			Quiz.create( {pregunta: 'El descubridor de América', respuesta: 'Cristobal Colón'} );
-			Quiz.create( {pregunta: 'Animal pesado de orejas grandes y con trompa', respuesta: 'Elefante'})
+			Quiz.create( {pregunta: 'Capital de Portugal', respuesta: 'Lisboa', tema: 'ocio'});
+			Quiz.create( {pregunta: 'El descubridor de América', respuesta: 'Cristobal Colón', tema: 'ocio'} );
+			Quiz.create( {pregunta: 'Animal pesado de orejas grandes y con trompa', respuesta: 'Elefante', tema: 'ocio'})
 			.then(function(){console.log('Base de datos inicializada')});
 		};
 	});

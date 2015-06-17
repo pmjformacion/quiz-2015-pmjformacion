@@ -1,7 +1,11 @@
-body 				{background: #333;}
+body 					{background: #333; font-size: 10px;}
 
-#page-wrap:after	{content: "Smartphone Layout";}
+#page-wrap:after		{content: "Smartphone Layout";}
 
-h2 span, section h3 {display: none;}
-body    			{font-size: xx-large;}
-footer, input       {font-size: large;}
+h2 span, section h3 	{display: none;}
+body    				{font-size: xx-large;}
+footer, input       	{font-size: large;}
+
+.subitem-1, .subitem-2	{display: table-row;}
+.subitem-3, .subitem-4	{display: table-row;}
+.soft  					{font-size: 0.75em;}
