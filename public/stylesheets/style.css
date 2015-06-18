@@ -32,3 +32,4 @@ td:nth-child(1)		{padding: 0px 5px 0px 0px;}
 .subitem-4				{display: table-cell; width: 8%; }
 
 .comment 				{text-align: left; font-size: 0.75em; }
+.comment_btn 			{background-color: #00FF00; color: #FF0000; font-size: 1.05em; padding: 0 5px 0 5px; }

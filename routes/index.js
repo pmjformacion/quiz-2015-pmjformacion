@@ -11,8 +11,11 @@ router.get('/', function(req, res) {
 });
 
 
-// Autoload de comandos con :quizId
+// AUTOLOAD de comandos con :quizId   o   :commentId
+// se recuperan los registros previamente a mostrar la página, si 
+// el parametro :quizID o :commentId aparecen en la ruta
 router.param('quizId', quizController.load);  // autoload :quizId
+router.param('commentId', commentController.load);  // autoload :commentId
 
 // Definición de rutas de sesion
 router.get('/login',  sessionController.new);     // formulario login
@@ -34,6 +37,13 @@ router.delete('/quizes/:quizId(\\d+)',     sessionController.loginRequired, quiz
 // Definición de rutas de /quizes para gestionar comentarios
 router.get('/quizes/:quizId(\\d+)/comments/new',commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments',   commentController.create);
+router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish',   
+										sessionController.loginRequired, commentController.publish);
+		/* Esta última ruta de publicar no es un uso correcto de los principios del interfaz REST
+			porque estamos modificando un campo de la BBDD, estamos haciendo un updtete.
+			Debería haber sido un router.put()  y no router.get();
+		*/
+
 
 /* GET /author  */
 router.get('/author', quizController.author);
