@@ -2,8 +2,27 @@
 var debug = require('debug')('quiz-2015-pmjformacion');
 var app = require('../app');
 
+var fs = require('fs');			// paquete pare leer ficheros
+								// leeremos los ficheros de claves
+var https = require('https');	// permite instalar un servidor HTTPS
+
+// objeto variable options claves privadas y certicado público 509,
+// y los convertimos en string
+var options = {
+    key: fs.readFileSync('certs/quiz-2015-pmj-key.pem').toString(),
+    cert: fs.readFileSync('certs/quiz-2015-pmj-cert.pem').toString()
+};
+
 app.set('port', process.env.PORT || 3000);
 
 var server = app.listen(app.get('port'), function() {
+  debug('Express server listening on port ' + server.address().port);
+});
+
+
+// Creamos un servidor HTTPS que guardamos en la variable 'serverSecure'
+// al que pasamos las claves a usar y la aplicación. Escucha en el puerto 8443
+var serverSecure = https.createServer(options, app);
+serverSecure.listen(8443, function() {
   debug('Express server listening on port ' + server.address().port);
 });
