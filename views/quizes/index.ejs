@@ -3,16 +3,23 @@
 <div class="table">
 	<% var i; for (i=0; i < quizes.length; i++) { %>        
 	 <div class="item">
-	 	<div class="subitem-1"><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></div>
+	 	<div class="subitem-1">
+	 		<a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></div>
 	 	<div class="subitem-2 soft"><%= quizes[i].tema %></div>
-	 	<div class="subitem-3"><a href="quizes/<%= quizes[i].id %>/edit"><button>editar</button></a></div>
-		 <div class="subitem-4">
-	        <form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
-	          <button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');">
-	            borrar
-	          </button>
-	        </form>
-	      </div>
+
+	 	<%if(session.user){%>
+	 		<!-- Botones editar y borrar con confirmación -->
+		 	<div class="subitem-3">
+		 		<a href="quizes/<%= quizes[i].id %>/edit"><button>editar</button></a>
+		 	</div>
+			<div class="subitem-4">
+		        <form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
+		          <button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');">
+		            borrar
+		          </button>
+		        </form>
+		    </div>
+		<%}%>
 	 </div>
 	<% } %>
 
@@ -25,9 +32,12 @@
 				<input type="submit" value="Buscar">
 			</form>
 		</div>
-		<div class="subitem-2">
-			<br><a href="/quizes/new"><button type="button">Crear pregunta</button></a>
-		</div>
+		<%if(session.user){%>
+			<!-- Botón crear pregunta -->
+			<div class="subitem-2">
+				<br><a href="/quizes/new"><button type="button">Crear pregunta</button></a>
+			</div>
+		<%}%>
 	</div>
 
 </div>
