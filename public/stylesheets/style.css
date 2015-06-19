@@ -33,3 +33,6 @@ td:nth-child(1)		{padding: 0px 5px 0px 0px;}
 
 .comment 				{text-align: left; font-size: 0.75em; }
 .comment_btn 			{background-color: #00FF00; color: #FF0000; font-size: 1.05em; padding: 0 5px 0 5px; }
+
+#liveclock 				{float: right; background: #FE9A2E ; color: darkblue; font-size: 0.7em; padding: 5px;}
+#lastTime				{float: right; color: gray; font-size: 0.7em; padding: 5px;}

@@ -12,9 +12,11 @@
 			media='only screen and (max-width: 480px') 
 			href="/stylesheets/smartphone.css">
 
+	<!-- visualizo un reloj para ayudar a comprobar logout -->
+	<script type="text/javascript" src="/javascripts/show-clock.js"></script>
 </head>
 
-<body>
+<body onload="showClock()">
 <div id="page-wrap">
 
 	<header class="main" id="h1">
@@ -55,6 +57,13 @@
 			¿Qué es un Quiz?
 		</a></span>
 		<span><a href="https://github.com/pmjformacion/quiz-2015-pmjformacion">Mi proyecto en GitHub</a></span>
+		<span id="liveclock">Hora actual</span>
+		<%if(session.user) {
+			var hora = new Date(session.user.lastTime); 
+			hora = hora.toTimeString().match(/^.{1,8}/);
+		%>
+			<span id="lastTime"> last: <%= hora %></span>
+		<% } %>
 	</footer>
 
 </div>	
