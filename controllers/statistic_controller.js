@@ -26,7 +26,7 @@ exports.show = function(req, res) {
         console.log("cuento commments");
         estadistica.commentsTot[1] = commentsCount;})
     .then(function(c) {
-      models.Comment.count({where: 'publicado = 1'})
+      models.Comment.count({where: 'publicado'})
       .on('success', function(CPublihisedCount){  // devuelve el número de comentarios publicados
         console.log("cuento comments published");
         estadistica.commentsPub[1] = CPublihisedCount;})
