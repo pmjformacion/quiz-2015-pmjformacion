@@ -4,6 +4,7 @@ var router = express.Router();
 var quizController = require('../controllers/quiz_controller');
 var commentController = require('../controllers/comment_controller');
 var sessionController = require('../controllers/session_controller');
+var statisticController = require('../controllers/statistic_controller');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -43,6 +44,9 @@ router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish',
 			porque estamos modificando un campo de la BBDD, estamos haciendo un updtete.
 			Debería haber sido un router.put()  y no router.get();
 		*/
+
+// Definición de rutas de /quizes para gestionar estadísticas
+router.get('/quizes/statistics', statisticController.show);
 
 
 /* GET /author  */

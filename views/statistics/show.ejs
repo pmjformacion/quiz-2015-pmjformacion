@@ -1,0 +1,23 @@
+
+
+<div class="table">
+	<%  
+		var i = 0;
+		for (var field in Object.keys(statistic)) { 
+			i++;
+			var nameField = Object.keys(statistic)[field];
+			console.log("field es " + nameField);
+	%>        
+	 <div class="item">
+	 	<div class="subitem-1">
+	 		<%- i %>.- <%= statistic[nameField][0] %>
+	 	</div>
+	 	<div class="subitem-2 soft">
+	 		<%= statistic[nameField][1] %>
+	 	</div>
+
+	 </div>
+	<% } %>
+
+
+</div>
