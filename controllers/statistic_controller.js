@@ -32,7 +32,7 @@ exports.show = function(req, res) {
         estadistica.commentsPub[1] = CPublihisedCount;})
       .then( function(c) {
         console.log("cuento quizzes with include " + new Date().toString());
-        models.Quiz.count({where: 'Comments.QuizId is null', include: [{ model: models.Comment}]})
+        models.Quiz.count({where: '"Comments"."QuizId" IS NULL', include: [{ model: models.Comment}]})
         .on ('success', function(cuenta){  // devuelve el número de PREGUNTAS CON COMENTARIO
             estadistica.quizzesNoComment[1] = cuenta;
             estadistica.quizzesComment[1] = estadistica.quizzesTot[1] - estadistica.quizzesNoComment[1];
