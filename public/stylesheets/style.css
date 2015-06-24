@@ -5,6 +5,11 @@ body   					{font: 16px Georgia, serif;}
 #page-wrap > .main  	{border: 1px solid #999; padding: 1%;
 						 margin-bottom: 1px; color: black;}
 
+#sequelize_ver 			{font-size: 0.65em; background: darkred; color: yellow; 
+						 float: left; padding: 3px; font-family: sans-serif;}
+#sequelize_ver:hover	 {background: yellow; color: darkred; }
+#sequelize_ver a 		{text-decoration: none; color: inherit;}
+
 #ErrorMsgs				{color: #f61; font-size: smaller;}
 .right 				 	{float: right;}			 
 
